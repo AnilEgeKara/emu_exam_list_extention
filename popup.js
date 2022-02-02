@@ -15,8 +15,19 @@ $("#userinput").keyup(async function(event) {
     }
 });
 
-$('#class-list').on('click', 'li', function(e) {
-    $(this).remove();
+$('#class-list').on('click', '#close_btn', function(e) {
+    $(this).closest('li').remove()
+});
+$('#copyAll').on('click', function(e) {
+    var list ='';
+    $('#class-list').each(function(){
+        var li = $(this).find('li');
+        list += li.text().replace(/(\r\n|\n|\r|  )/gm, "").replaceAll("✕", "\n");
+    })
+
+    list += '\n\nCopied by Emu Exam List Extension : shorturl.at/pAKRY'
+    navigator.clipboard.writeText(list);
+
 });
 $('#clearAllBtn').on('click', function(e) {
     $('#class-list').empty()
@@ -68,8 +79,7 @@ async function addItem(){
                         if(examlist[i][j].includes(search)){
                             var li = document.createElement("li");
                             li.className = 'list-group-item';
-                            //console.log(input.value+' '+ examlist[0][j]+' '+j)
-                            li.textContent = examlist[i][j]+' '+ examlist[0][j]+' '+parsedDocument.querySelectorAll('b')[b]["innerText"];
+                            li.innerHTML = '<div class="d-flex justify-content-between">'+ examlist[i][j]+' '+ examlist[0][j]+' '+parsedDocument.querySelectorAll('b')[b]["innerText"] + '<button type="button" class="btn btn-light btn-sm" id="close_btn" >&#x2715 </button> </div>';
                             $("#empty_text").fadeOut('slow');
                             ul.appendChild(li);
                         }
@@ -131,11 +141,6 @@ async function getExamList(className){
         }
         
     })
-    // .catch(function (response) {
-    //     // "Not Found"
-    //     console.log(response.statusText);
-    // });
-    
 }
 
 // Global variable
