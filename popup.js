@@ -18,11 +18,15 @@ $("#userinput").keyup(async function(event) {
 $('#class-list').on('click', '#close_btn', function(e) {
     $(this).closest('li').remove()
 });
+$('#class-list').on('click', '#copy_btn', function(e) {
+    var list = $(this).closest('li').text().replace(/(\r\n|\n|\r|  )/gm, "").replaceAll("❏ ", "").replaceAll("✕", "\n");
+    navigator.clipboard.writeText(list);
+});
 $('#copyAll').on('click', function(e) {
     var list ='';
     $('#class-list').each(function(){
         var li = $(this).find('li');
-        list += li.text().replace(/(\r\n|\n|\r|  )/gm, "").replaceAll("✕", "\n");
+        list += li.text().replace(/(\r\n|\n|\r|  )/gm, "").replaceAll("❏ ", "").replaceAll("✕", "\n");
     })
 
     list += '\n\nCopied by Emu Exam List Extension : shorturl.at/pAKRY'
@@ -79,7 +83,13 @@ async function addItem(){
                         if(examlist[i][j].includes(search)){
                             var li = document.createElement("li");
                             li.className = 'list-group-item';
-                            li.innerHTML = '<div class="d-flex justify-content-between">'+ examlist[i][j]+' '+ examlist[0][j]+' '+parsedDocument.querySelectorAll('b')[b]["innerText"] + '<button type="button" class="btn btn-light btn-sm" id="close_btn" >&#x2715 </button> </div>';
+                            li.innerHTML = '<div class="d-flex justify-content-between">'+
+                                                examlist[i][j]+' '+ examlist[0][j]+' '+parsedDocument.querySelectorAll('b')[b]["innerText"] +
+                                                '<div>'+
+                                                    '<button type="button" class="btn btn-light btn-sm mr-2" id="copy_btn" >&#10063 </button>'+
+                                                    '<button type="button" class="btn btn-light btn-sm" id="close_btn" >&#x2715 </button>'+
+                                                '</div>'+
+                                            '</div>';
                             $("#empty_text").fadeOut('slow');
                             ul.appendChild(li);
                         }
