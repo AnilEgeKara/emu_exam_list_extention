@@ -29,7 +29,7 @@ $('#copyAll').on('click', function(e) {
         list += li.text().replace(/(\r\n|\n|\r|  )/gm, "").replaceAll("❏ ", "").replaceAll("✕", "\n");
     })
 
-    list += '\n\nCopied by Emu Exam List Extension : shorturl.at/pAKRY'
+    list += '\n\nCopied by Emu Exam List Extension : shorturl.at/bdikP'
     navigator.clipboard.writeText(list);
 
 });
