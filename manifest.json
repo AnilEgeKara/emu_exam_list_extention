@@ -1,7 +1,7 @@
 {
     "name": "EMU Exam List",
     "description": "Using this extension, you can search from Eastern Mediterranean University's last shared exam list!.",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "manifest_version": 3,
     "content_scripts":[
         {
