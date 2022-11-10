@@ -29,7 +29,7 @@ $('#class-list').on('click', '#copy_btn', function(e) {
         await new Promise(resolve => setTimeout(resolve, 600));       
         $(this).animate({'opacity': 0}, 400, function(){
             // $(this).html('Copied!!').animate({'opacity': 1}, 400);  
-            $(this).html('&#10063').animate({'opacity': 1}, 400);    
+            $(this).html('<i class="gg-copy"></i>').animate({'opacity': 1}, 400);    
         });
     });
 
@@ -109,7 +109,7 @@ async function addItem(){
                             li.innerHTML = '<div class="d-flex justify-content-between">'+
                                                 examlist[i][j]+' '+ examlist[0][j]+' '+parsedDocument.querySelectorAll('b')[b]["innerText"] +
                                                 '<div>'+
-                                                    '<button type="button" class="btn btn-light btn-sm mr-2" id="copy_btn" >&#10063 </button>'+
+                                                    '<button type="button" class="btn btn-light btn-sm mr-2" id="copy_btn" ><i class="gg-copy"></i> </button>'+
                                                     '<button type="button" class="btn btn-light btn-sm" id="close_btn" >&#x2715 </button>'+
                                                 '</div>'+
                                             '</div>';
