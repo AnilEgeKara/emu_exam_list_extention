@@ -3,6 +3,8 @@ var input = document.getElementById("userinput");
 var ul = document.querySelector("ul");
 
 
+
+
 $('#enter').on('click',async function(e) {
     await addItem();
 });
@@ -31,6 +33,15 @@ $('#copyAll').on('click', function(e) {
 
     list += '\n\nCopied by Emu Exam List Extension : shorturl.at/bdikP'
     navigator.clipboard.writeText(list);
+
+    $('#copyAll').animate({'opacity': 0}, 400, async function(){
+        $(this).html('Copied!!').animate({'opacity': 1}, 400);  
+        await new Promise(resolve => setTimeout(resolve, 600));       
+        $('#copyAll').animate({'opacity': 0}, 400, function(){
+            // $(this).html('Copied!!').animate({'opacity': 1}, 400);  
+            $(this).html('Copy').animate({'opacity': 1}, 400);    
+        });
+    });
 
 });
 $('#clearAllBtn').on('click', function(e) {
