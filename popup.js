@@ -23,6 +23,16 @@ $('#class-list').on('click', '#close_btn', function(e) {
 $('#class-list').on('click', '#copy_btn', function(e) {
     var list = $(this).closest('li').text().replace(/(\r\n|\n|\r|  )/gm, "").replaceAll("❏ ", "").replaceAll("✕", "\n");
     navigator.clipboard.writeText(list);
+
+    $(this).animate({'opacity': 0}, 400, async function(){
+        $(this).html('Copied!!').animate({'opacity': 1}, 400);  
+        await new Promise(resolve => setTimeout(resolve, 600));       
+        $(this).animate({'opacity': 0}, 400, function(){
+            // $(this).html('Copied!!').animate({'opacity': 1}, 400);  
+            $(this).html('&#10063').animate({'opacity': 1}, 400);    
+        });
+    });
+
 });
 $('#copyAll').on('click', function(e) {
     var list ='';
